@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:myname="http://www.lexueba.com/schema/user"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.lexueba.com/schema/user http://www.lexueba.com/schema/user.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!--默认标签 bean,alias,import,beans-->
+    <!-- set注入,property元素上是value属性-->
+    <bean id="person1" class="com.hello.model.Person">
+        <property name="id" value="12345"></property>
+        <property name="name" value="tom"></property>
+    </bean>
+
+    <bean id="person2" class="com.hello.model.Person">
+        <property name="id" ref="12345"></property>
+    </bean>
+
+
+    <!--配置扫描路径-->
+<!--    <context:component-scan base-package="com.hello"/>-->
+
+<!--    <myname:user id="customId" name="hello"/>-->
+
+<!--    <aop:aspectj-autoproxy/>-->
+
+
+    <!-- 自定义标签set属性注入-->
+<!--    <bean id="person" name="person1,person2,person3" class="com.hello.model.Person" p:id="1234" p:name="tomcat"/>-->
+
+    <!--构造器注入-->
+    <!--<bean id="student" class="com.hello.model.Student" init-method="initMethod">
+        <constructor-arg index="0" value="100"/>
+        <constructor-arg index="1" value="200"/>
+    </bean>-->
+
+    <!--<bean id="student" class="com.hello.model.Student">
+    <property name="height" value="100"></property>
+    <property name="weight" value="300"></property>
+        <property name="cat" ref="cat"></property>
+    </bean>-->
+
+<!--    <bean id="cat" class="com.hello.model.Cat">-->
+<!--    </bean>-->
+
+<!--    &lt;!&ndash;meta元数据设置&ndash;&gt;-->
+<!--    <bean id="orderService" class="com.hello.model.OrderService">-->
+<!--        <meta key="test" value="testValue"></meta>-->
+<!--    </bean>-->
+
+    <!--lookup-method标签可以动态的赋值bean,bean的值从teacher替换为student-->
+    <!--<bean id="userStudyService" class="com.hello.model.UserStudyService">
+        <lookup-method name="getUser" bean="student1"></lookup-method>
+    </bean>-->
+
+<!--    <bean id="teacher" class="com.hello.model.Teacher"/>-->
+
+    <!--replaced-method标签可以摒弃原来的业务-->
+    <!--<bean id="cat" class="com.hello.model.Cat">
+        <replaced-method name="sing" replacer="tomcat"/>
+    </bean>-->
+
+<!--    <bean id="tomcat" class="com.hello.model.TomCat"/>-->
+
+    <!--qualifier的作用等于给bean再起一个名字，注入的时候可以使用这个名字-->
+<!--    <bean id="testQualifier1" class="com.hello.model.TestQualifier">-->
+<!--        <property name="id" value="111"/>-->
+<!--        <qualifier type="org.springframework.beans.factory.annotation.Qualifier" value="qf"/>-->
+<!--    </bean>-->
+
+<!--    <bean id="testQualifier2" class="com.hello.model.TestQualifier">-->
+<!--        <property name="id" value="222"/>-->
+<!--    </bean>-->
+
+    <!--factory-bean的用法-->
+    <!--<bean id="myFactoryBean" class="com.hello.model.MyFactoryBean"/>
+    <bean id="user" factory-bean="myFactoryBean" factory-method="user"/>-->
+
+    <!--导入其他模块的配置文件-->
+<!--    <import resource="order-context.xml"/>-->
+
+    <!--加载properties配置文件-->
+<!--    <context:property-placeholder location="classpath*:*.properties"/>-->
+
+    <!-- 配置数据源 -->
+<!--    <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"-->
+<!--          destroy-method="close">-->
+<!--        <property name="driverClassName" value="${jdbc.driverClass}"/>-->
+<!--        <property name="url" value="${jdbc.url}"/>-->
+<!--        <property name="username" value="${jdbc.username}"/>-->
+<!--        <property name="password" value="${jdbc.password}"/>-->
+<!--    </bean>-->
+
+    <!-- 指定数据源和配置文件路径 -->
+<!--    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">-->
+<!--        <property name="dataSource" ref="dataSource"/>-->
+<!--        &lt;!&ndash; 自动扫描mapping.xml文件 &ndash;&gt;-->
+<!--        <property name="mapperLocations" value="classpath:UserMapper.xml"></property>-->
+<!--    </bean>-->
+
+<!--    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">-->
+<!--        <property name="basePackage" value="com.hello.mapper"></property>-->
+<!--    </bean>-->
+
+<!--    &lt;!&ndash; 配置事务管理器 &ndash;&gt;-->
+<!--    <bean id="transactionManager"-->
+<!--          class="org.springframework.jdbc.datasource.DataSourceTransactionManager">-->
+<!--        <property name="dataSource" ref="dataSource"/>-->
+<!--    </bean>-->
+
+<!--    <tx:annotation-driven/>-->
+
+</beans>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--parent属性 abstract属性在父类bean中配置，则父类bean不可实例化-->
+    <!--子类bean会继承父类bean的属性，同时也会覆盖父类的属性-->
+    <bean id="parent" class="com.hello.model.Parent" abstract="true">
+        <property name="name" value="Lucy"/>
+    </bean>
+
+    <bean id="child" class="com.hello.model.Child" parent="parent">
+        <property name="age" value="30"/>
+    </bean>
+
+    <!--autowired属性 no 不自动装配， byName 按照名称自动装配  byType 按照类型自动装配 按照类型自动装配时，可以辅助使用Qualifier-->
+    <bean id="testAutowired" class="com.hello.model.TestAutowiredModel" autowire="byType"/>
+
+
+    <bean id="testDependsonModel" class="com.hello.model.TestDependsonModel" depends-on="child"/>
+
+
+</beans>
