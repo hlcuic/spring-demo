@@ -1,8 +1,7 @@
 package com.hello.test;
 
-//import com.hello.service.TestOuterService;
-
 import com.hello.model.Person;
+import com.hello.model.School;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -26,8 +25,24 @@ public class ApplicationContextTest {
      */
     @Test
     public void testSetInject(){
-        Person person = applicationContext.getBean(Person.class);
-        System.out.println("person: "+person);
+        // 获取person1对象
+        Person person1 = (Person) applicationContext.getBean("person1");
+        System.out.println("person1: "+person1);
+
+        // 获取person2对象
+        Person person2 = (Person) applicationContext.getBean("person2");
+        System.out.println("person2: "+person2);
+
+        // 获取person3对象
+        Person person3 = (Person) applicationContext.getBean("person3");
+        System.out.println("person3: "+person3);
+
+        // 获取person4对象
+        School school = (School) applicationContext.getBean("school");
+        System.out.println("person4: "+school.findPerson());
+
+        // 通过别名获取bean对象
+        System.out.println(applicationContext.getBean("jack"));
     }
 
 		/*

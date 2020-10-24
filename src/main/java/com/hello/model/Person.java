@@ -2,6 +2,9 @@ package com.hello.model;
 
 import lombok.Data;
 
+/**
+ * 人
+ */
 @Data
 public class Person {
     // 身份证号

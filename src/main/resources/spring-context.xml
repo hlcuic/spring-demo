@@ -10,14 +10,45 @@
 		http://www.lexueba.com/schema/user http://www.lexueba.com/schema/user.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
 
     <!--默认标签 bean,alias,import,beans-->
+
     <!-- set注入,property元素上是value属性-->
     <bean id="person1" class="com.hello.model.Person">
         <property name="id" value="12345"></property>
         <property name="name" value="tom"></property>
     </bean>
 
+    <!-- set注入,property元素上是ref属性-->
     <bean id="person2" class="com.hello.model.Person">
-        <property name="id" ref="12345"></property>
+        <property name="house" ref="house"></property>
+    </bean>
+
+    <!-- set注入,property元素下有子元素-->
+    <bean id="person3" class="com.hello.model.Person">
+        <property name="id">
+            <value>56789</value>
+        </property>
+        <property name="name">
+            <value>jack</value>
+        </property>
+        <property name="house">
+            <ref bean="house"></ref>
+        </property>
+    </bean>
+
+    <!--构造器注入，value,ref,子元素三种-->
+    <bean id="house" class="com.hello.model.House">
+        <constructor-arg index="0" value="南京市雨花台区"/>
+        <constructor-arg index="1" value="10000"/>
+        <constructor-arg index="2" value="5"/>
+    </bean>
+
+    <!--lookup-method标签可以动态的赋值bean-->
+    <bean id="school" class="com.hello.model.School">
+        <lookup-method name="findPerson" bean="student"/>
+    </bean>
+
+    <bean id="student" name="tom,jack" class="com.hello.model.Student">
+        <property name="classId" value="1-8"></property>
     </bean>
 
 
@@ -36,25 +67,6 @@
     <!--<bean id="student" class="com.hello.model.Student" init-method="initMethod">
         <constructor-arg index="0" value="100"/>
         <constructor-arg index="1" value="200"/>
-    </bean>-->
-
-    <!--<bean id="student" class="com.hello.model.Student">
-    <property name="height" value="100"></property>
-    <property name="weight" value="300"></property>
-        <property name="cat" ref="cat"></property>
-    </bean>-->
-
-<!--    <bean id="cat" class="com.hello.model.Cat">-->
-<!--    </bean>-->
-
-<!--    &lt;!&ndash;meta元数据设置&ndash;&gt;-->
-<!--    <bean id="orderService" class="com.hello.model.OrderService">-->
-<!--        <meta key="test" value="testValue"></meta>-->
-<!--    </bean>-->
-
-    <!--lookup-method标签可以动态的赋值bean,bean的值从teacher替换为student-->
-    <!--<bean id="userStudyService" class="com.hello.model.UserStudyService">
-        <lookup-method name="getUser" bean="student1"></lookup-method>
     </bean>-->
 
 <!--    <bean id="teacher" class="com.hello.model.Teacher"/>-->
